@@ -1,0 +1,27 @@
+#! /usr/bin/env bash
+
+# Service Init Filter
+# Using this for my Raspberry Pi 4
+# because, rather than doing it the
+# right way (session startup options),
+# this way, I get to write a script.
+# 
+# brianc2788@gmail.com
+# 6/20/2021
+
+echo "::SERVICE INIT FILTER::"
+echo "-Stopping the following services:"
+echo "-apache2, bluetooth, mysql, postgresql, tor"
+echo "-This will take several seconds."
+
+sudo service apache2 stop
+sudo service bluetooth stop
+sudo service mysql stop
+sudo service postgresql stop
+sudo service tor stop
+
+# show list of services and their status'
+# and exit. filter only these 5 services
+# with grep.
+
+service --status-all | grep -i -e apache2 -e bluetooth -e mysql -e postgresql -e tor

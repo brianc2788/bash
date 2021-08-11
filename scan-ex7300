@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+# scan-ex7300
+# Description: Scans for all devices with
+# a NAC address that matches the
+# Netgear 7300v2 wifi extender/mesh device.
+
+MAC1="72:CD:D6:AE:A1:A8"
+
+echo "Scanning for devices matching criteria..."
+sudo nmap -sn 192.168.1.1/24 | grep -2 $MAC1

