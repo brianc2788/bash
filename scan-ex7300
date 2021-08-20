@@ -4,6 +4,10 @@
 # a NAC address that matches the
 # Netgear 7300v2 wifi extender/mesh device.
 
+# this is my sisters wifi mesh, i have no problem
+# putting the mac up on the internet.
+# have at. she sucks - big time.
+# if u want her IP, lmk. she has credit cards. lol.
 MAC1="72:CD:D6:AE:A1:A8"
 
 echo "Scanning for devices matching criteria..."
