@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+echo 'change brightness on this laptop'
+echo 'enter brightness (recommend 1000-24000)'
+
+read BRIGHTNESS
+
+pkexec xfpm-power-backlight-helper --set-brightness $BRIGHTNESS
+

@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 # Declaring variables and echoing confirmation.
 
-$VAR1 = "string"
+VAR1="string"
 
 echo $VAR1
