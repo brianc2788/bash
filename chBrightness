@@ -2,6 +2,9 @@
 echo 'change brightness on this laptop'
 echo 'brightness value must be between'
 echo '0 (min brightness) and 24000 (max)'
+echo '----------------------------------'
+echo 'current brightness:'
+xfpm-power-backlight-helper --get-brightness
 echo 'enter brightness:'
 
 read BRIGHTNESS
