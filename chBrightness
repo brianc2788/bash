@@ -1,6 +1,8 @@
 #! /usr/bin/env bash
 echo 'change brightness on this laptop'
-echo 'enter brightness (recommend 1000-24000)'
+echo 'brightness value must be between'
+echo '0 (min brightness) and 24000 (max)'
+echo 'enter brightness:'
 
 read BRIGHTNESS
 
