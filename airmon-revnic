@@ -1,0 +1,5 @@
+#! /usr/bin/bash
+# airmon-ng revert network interface card.
+sudo airmon-ng stop wlan0mon
+service NetworkManager start
+#service wpa_supplicant start
