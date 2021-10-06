@@ -1,0 +1,11 @@
+#!/bin/bash
+# Enables ROUTING/IP FORWARDING on my
+# Linux machine.
+# requires root permissions.
+
+# OLD WAY
+#echo 1 > /proc/sys/net/ipv4/ip_forward
+
+# THE WAY I LIKE BETTER
+sysctl -w net.ipv4.ip_forward=1
+
