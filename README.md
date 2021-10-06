@@ -1,5 +1,3 @@
 ## ***bash/ - Scripts for bash.*** ##
-Most of these scripts are from my Raspberry pi,  
-but I keep them on-hand for reference; I don't  
-have any others at the moment.  
-
+fun, small bash scripts to help automate repetetive tasks.
+System Administration, bash one-liners, etc.
