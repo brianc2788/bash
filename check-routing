@@ -1,0 +1,7 @@
+#!/bin/bash
+# Checks the 'ip_forward' network rule on linux.
+# requires root permissions.
+
+echo 'Reading (/proc/sys/net/ipv4/ip_forward)...'
+echo "Your system's IP_FORWARDING is set to:"
+cat /proc/sys/net/ipv4/ip_forward

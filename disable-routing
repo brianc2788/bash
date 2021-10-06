@@ -7,5 +7,5 @@
 #echo 0 > /proc/sys/net/ipv4/ip_forward
 
 # THE WAY I LIKE BETTER
-sysctl -w net.ipv4.ip_forward=0
+sudo sysctl -w net.ipv4.ip_forward=0
 
