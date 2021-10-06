@@ -1,0 +1,12 @@
+#!/bin/bash
+# bash script for putting wlan0
+# into monitor mode.
+# uses ifconfig, iwconfig, iw.
+# requires root permissions (ie run as sudo).
+
+ifconfig wlan0 down
+#iw wlan0 name wlan0mon
+iw wlan0 set type monitor
+ifconfig wlan0 up
+# let the user know the script worked.
+ifconfig wlan0
