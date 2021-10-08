@@ -4,9 +4,14 @@
 # uses ifconfig, iwconfig, iw.
 # requires root permissions (ie run as sudo).
 
+service NetworkManager stop
+service wpa_supplicant stop
+
 ifconfig wlan0 down
-#iw wlan0 name wlan0mon
-iw wlan0 set type monitor
-ifconfig wlan0 up
+macchanger -a wlan0
+iw wlan0 set name wlan0mon
+iw wlan0mon set type monitor
+ifconfig wlan0mon up
+
 # let the user know the script worked.
-ifconfig wlan0
+ifconfig wlan0mon
