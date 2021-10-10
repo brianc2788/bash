@@ -3,7 +3,15 @@
 # requires root permissions.
 
 printf "[i]Reading from '/proc/sys/net/ipv4/ip_forward'....\n\n"
-cat /proc/sys/net/ipv4/ip_forward
+sudo cat /proc/sys/net/ipv4/ip_forward
+
+#IPF_STATUS=sudo cat /proc/sys/net/ipv4/ip_forward
+#if $IPF_STATUS == 1
+#    echo "forwarding on(0/false)"
+#fi
+#elif $IPF_STATUS == 0
+#    echo "forwarding off (0/false)"
+#fi
 
 printf "\n[i]RESULTS OF 'ip netconf'.......\n\n"
 ip netconf | head -n5
