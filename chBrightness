@@ -1,11 +1,11 @@
 #! /usr/bin/env bash
-echo 'change brightness on this laptop'
-echo 'brightness value must be between'
-echo '0 (min brightness) and 24000 (max)'
-echo '----------------------------------'
-echo 'current brightness:'
+printf 'change brightness on this laptop\n'
+printf 'brightness value must be between\n'
+printf '0 (min brightness) and 24000 (max)\n'
+printf '\---------------------------------- \n'
+printf 'current brightness:'
 xfpm-power-backlight-helper --get-brightness
-echo 'enter brightness:'
+printf 'enter brightness:'
 
 read BRIGHTNESS
 

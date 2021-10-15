@@ -9,9 +9,9 @@ service wpa_supplicant stop
 
 ifconfig wlan0 down
 macchanger -a wlan0
-iw wlan0 set name wlan0mon
-iw wlan0mon set type monitor
-ifconfig wlan0mon up
+iw wlan0 set type monitor
+ifconfig wlan0 up
 
-# let the user know the script worked.
-ifconfig wlan0mon
+# let the user know the script worked
+# by printing NIC info via iw.
+iw wlan0 info

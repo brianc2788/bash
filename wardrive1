@@ -12,13 +12,9 @@ sudo macchanger -a wlan0
 sudo iw wlan0 set type monitor
 sudo ifconfig wlan0 up
 
-FILENAME1=""
-date +%m%d | read FILENAME1
-FILEA1="$FILENAME1-adump.cap"
-FILEB1="$FILENAME1-tshark.cap"
+date +%b%d | read FILEDATE
 
-
-sudo airodump-ng wlan0 > $FILEA1 &
-sudo tshark -i wlan0 > $FILEB1 &
-
-echo 'wlan0 in monitor mode. running airodump-ng & tshark...'
+#sudo airodump-ng wlan0 --output-format cap -w $FILEDATE
+# I think, currently,
+# airodump is not working and tshark is.
+sudo tshark -i wlan0 -w /root/$FILEDATE-tshark.cap

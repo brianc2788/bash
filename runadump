@@ -1,7 +1,5 @@
 #! /bin/bash
 # put card in mon mode & run airodump-ng.
-DATE1=/usr/bin/date
-sudo service NetworkManager stop
-sudo service wpa_supplicant stop
-sudo airmon-ng start wlan0
-sudo airodump-ng --write $DATE1 wlan0mon
+DATE1=/usr/bin/date +%b%d
+
+echo $DATE1
