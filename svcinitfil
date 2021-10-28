@@ -8,6 +8,11 @@
 # 
 # brianc2788@gmail.com
 # 6/20/2021
+# 
+# UPDATE:
+# yeah, learned a new cmd so, this
+# is totally unnecessary.
+# $> systemctl disable <service-you-wanna-stop>
 
 echo "::SERVICE INIT FILTER::"
 echo "-Stopping the following services:"
