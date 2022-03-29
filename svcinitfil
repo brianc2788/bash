@@ -1,18 +1,13 @@
 #! /usr/bin/env bash
 
 # Service Init Filter
-# Using this for my Raspberry Pi 4
-# because, rather than doing it the
-# right way (session startup options),
-# this way, I get to write a script.
+# I used this on my raspberry pi4 as
+# a 'nix n00b.
 # 
-# brianc2788@gmail.com
-# 6/20/2021
-# 
-# UPDATE:
-# yeah, learned a new cmd so, this
-# is totally unnecessary.
-# $> systemctl disable <service-you-wanna-stop>
+# Proper way to set & unset services that start with
+# the desktop on debian systems:
+# >$ systemctl disable|enable <service>
+# Guess i'll hang onto it; just in case.
 
 echo "::SERVICE INIT FILTER::"
 echo "-Stopping the following services:"
@@ -25,7 +20,7 @@ sudo service mysql stop
 sudo service postgresql stop
 sudo service tor stop
 
-# show list of services and their status'
+# show list of services, their status,
 # and exit. filter only these 5 services
 # with grep.
 
