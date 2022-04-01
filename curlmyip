@@ -1,6 +1,2 @@
 #!/usr/bin/bash
-#just for fun.
-#i have a much better script
-#in python.
-
 curl https://ip4.me/api/
