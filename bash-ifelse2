@@ -2,6 +2,6 @@
 # "$#" - argv length
 ARGLEN=$#
 
-if [ $ARGLEN -ne 2 ]; then
+if [ ${ARGLEN} -ne 2 ]; then
 	echo $1
 fi
