@@ -1,0 +1,14 @@
+#!/bin/bash
+# shell scripting loop example.
+# not working yet.
+
+NUM1=1
+
+for ${NUM1}; do
+    if [ $NUM1 < 5 ]; then
+        echo "$NUM1"
+    else
+        break
+    fi
+done
+
