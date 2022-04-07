@@ -29,5 +29,5 @@ tput setaf 4;tput cup 25 17;echo -n '.'
 sleep 1.5
 tput setaf 6;tput cup 34 1; echo -n "k. you can leave now."
 sleep 1
-tput setaf 6;tput cup 35 1;echo -n "press ENTER to exit..."
+tput setaf 6;tput cup 34 1;echo -n "press ENTER to exit..."
 read ${BLANKVAR}
