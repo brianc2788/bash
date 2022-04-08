@@ -1,8 +1,0 @@
-#!/bin/bash
-# Use 'date' to set a variable and
-# use that variable as an arg for
-# other commands.
-
-date +%b%d' | read DATE1
-
-echo $DATE1
