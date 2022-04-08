@@ -42,5 +42,6 @@ printbuf 1 10 32 "." 1
 #outro
 printbuf 7 10 40 "lol k."
 printbuf 7 10 40 "you can go now."
-printbuf 7 10 40 "press ENTER"
+clear
+printbuf 7 10 40 "press ENTER" 0
 read ${INPUT_BUFFER}
