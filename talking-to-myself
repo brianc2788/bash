@@ -9,25 +9,38 @@
 # brianc2788@gmail.com                           #
 # ---------------------------------------------- #
 
-clear
-sleep 1.5
-echo "Talking to myself..."
-sleep 1.5
-tput setaf 1;tput cup 5 10;echo -n 'where am i?'
-sleep 1.5
-tput setaf 2;tput cup 10 20;echo -n 'huh? who are you?'
-sleep 1.5
-tput setaf 1;tput cup 15 10;echo -n 'how are you doing that?'
-sleep 1.5
-tput setaf 2;tput cup 20 20;echo -n 'doing what?'
-sleep 1.5
-tput setaf 4;tput cup 25 15;echo -n '.'
-sleep 0.5
-tput setaf 4;tput cup 25 16;echo -n '.'
-sleep 0.5
-tput setaf 4;tput cup 25 17;echo -n '.'
-sleep 0.5
-tput setaf 6;tput cup 34 1; echo -n "k. you can leave now."
-sleep 1.5
-tput setaf 6;tput cup 34 1;echo -n "press ENTER to exit..."
-read ${BLANKVAR}
+printbuf() {
+	color=$1
+	x=$2
+	y=$3
+	text=$4
+
+	if [ $# -eq 4 ]
+	then
+	time=2.0
+	clear
+	tput setaf ${color};tput cup ${x} ${y};echo -n ${text}
+	sleep ${time}
+	else
+		if [ $# -eq 5 ]
+		then
+			time=$5
+			tput setaf ${color};tput cup ${x} ${y};echo -n ${text};sleep ${time}
+		fi
+	fi
+}
+
+printbuf 1 10 20 "... talking to myself..."
+printbuf 2 10 20 "huh? who're you? where is this?"
+printbuf 1 10 20 "what do you mean?"
+printbuf 2 10 20 "how are you doing this?"
+printbuf 1 10 20 "doing what"
+printbuf 1 10 30 "." 1
+printbuf 1 10 31 "." 1
+printbuf 1 10 32 "." 1
+
+#outro
+printbuf 7 10 40 "lol k."
+printbuf 7 10 40 "you can go now."
+printbuf 7 10 40 "press ENTER"
+read ${INPUT_BUFFER}
