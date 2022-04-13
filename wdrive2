@@ -1,0 +1,18 @@
+#!/bin/bash
+# Wifi-Wardrive1
+# still having issues with permissions;
+# chroot? other environment var?
+
+service NetworkManager stop
+service wpa_supplicant stop
+
+ifconfig wlan0 down
+macchanger -a wlan0
+iw wlan0 set type monitor
+#sleep 1	# give the nic a second to change modes?
+ifconfig wlan0 up
+
+FILEDATE=$(date +%b%d)
+MYHOME="/home/userone/"
+airodump-ng wlan0 --background --output-format cap -w ${MYHOME}${FILEDATE}
+tshark -i wlan0 -w ${MYHOME}${FILEDATE}.pcap
