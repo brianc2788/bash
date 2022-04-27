@@ -9,7 +9,7 @@ FLOOR=100															# Don't let the user set brightness lower than 100.
 MAX_BRIGHTNESS=24000
 
 function usage() {
-	echo "Usage:\n>$ brightness <100-24000>"
+	echo -e "Usage: >$ brightness <100-24000>\n"
 	echo "Current Brightness: ${CURRENT_BRIGHTNESS}"
 	echo "Max Brightness: ${MAX_BRIGHTNESS}"
 }
@@ -20,7 +20,7 @@ then
 	exit
 fi
 
-if [ $1 -gt ${FLOOR} ] && [ $1 -lt $MAX_BRIGHTNESS ]
+if [ ${NEW_BRIGHTNESS} -ge ${FLOOR} ] && [ ${NEW_BRIGHTNESS} -le $MAX_BRIGHTNESS ]
 then
 	pkexec xfpm-power-backlight-helper --set-brightness ${NEW_BRIGHTNESS}
 fi
