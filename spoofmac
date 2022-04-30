@@ -1,16 +1,12 @@
 #!/bin/bash
-# use macchanger to change hw address of wlan0.
-# commented out: alternate method of changing
-# an interface's hw address.
-# 
-# usage:
-# ./spoofmac <interface>
+# Redoing this script.
+# TODO:
+# 	- Use oui-list to assign an
+# 	  accurate mac oui.
+# 	- 
 
-sudo ifconfig $1 down
-sudo macchanger -a $1
-sudo ifconfig $1 up
-
-# IW METHOD...
-#sudo ifconfig wlan0 down
-#sudo ifconfig wlan0 hw ether #xx:xx:xx:xx:xx:xx
-#sudo ifconfig up
+function usage() {
+	if [ $# -lt 1 ]
+	then
+		echo -e "Usage: >$ spoofmac \"spoof\"|\"unspoof\" <interface>"
+}
