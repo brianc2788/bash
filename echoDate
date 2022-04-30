@@ -1,6 +1,0 @@
-#!/bin/bash
-# setting a variable as the output of a command.
-
-DATE1=$(date +%b%d)
-
-echo $DATE1

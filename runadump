@@ -1,5 +1,0 @@
-#! /bin/bash
-# put card in mon mode & run airodump-ng.
-DATE1=/usr/bin/date +%b%d
-
-echo $DATE1

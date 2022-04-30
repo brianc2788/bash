@@ -1,8 +1,0 @@
-#!/bin/bash
-# bash-loops2 -
-# C-like for loop.
-
-for (( n=1;n <= 10; ++n ))
-do
-	echo $n
-done

@@ -1,6 +1,0 @@
-#! /usr/bin/bash
-
-name=""
-echo "hey there. name?"
-read name
-echo "got $name. thanks for playing."
