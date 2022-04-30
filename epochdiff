@@ -1,0 +1,41 @@
+#!/bin/bash
+# Takes arguments as seconds since the epoch (seconds
+# since Jan 1, 1970) and finds the time difference
+# between the epoch entered and the current epoch,
+# according to the system time.
+# TODO: Wrap time arithmetic operations in a function.
+# 		Various code-cleanup.
+# Authored by brianc2788@gmail.com
+
+ARGC=$#
+EPOCH_NOW=$(date +%s)
+declare -i EPOCH_NOW_INT=${EPOCH_NOW}
+
+function usage () {
+	echo "Usage: >$ epochdiff <epoch_string> <...>"
+	exit 0
+}
+
+# No args; produce the current seconds since 1/1/1970, print usage, and exit.
+if [ $# -lt 1 ];then
+	echo "Current seconds since the epoch: ${EPOCH_NOW}"
+	usage
+else
+	echo "Current Epoch: ${EPOCH_NOW}"
+fi
+
+# Handle args loop. Output differences.
+for arg in $@
+do
+	# Find which value is larger and find the difference.
+	# Store string and integer versions of variables as necessary.
+	declare -i EDIFF=0
+	declare -i argint=${arg}
+	if [ $argint -lt $EPOCH_NOW_INT ];then
+		EDIFF=(${EPOCH_NOW_INT}-${argint})
+		echo ${EDIFF}
+	elif [ argint -gt $EPOCH_NOW_INT ];then
+		EDIFF=${argint}-${EPOCH_NOW_INT}
+		echo ${EDIFF}
+	fi
+done
