@@ -32,9 +32,9 @@ do
 	declare -i EDIFF=0
 	declare -i argint=${arg}
 	if [ $argint -lt $EPOCH_NOW_INT ];then
-		EDIFF=(${EPOCH_NOW_INT}-${argint})
+		EDIFF=${EPOCH_NOW_INT}-${argint}
 		echo ${EDIFF}
-	elif [ argint -gt $EPOCH_NOW_INT ];then
+	elif [ $argint -gt $EPOCH_NOW_INT ];then
 		EDIFF=${argint}-${EPOCH_NOW_INT}
 		echo ${EDIFF}
 	fi
