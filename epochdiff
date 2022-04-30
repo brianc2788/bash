@@ -20,12 +20,13 @@ function print_diff() {
 	local -i nArg=$1
 	local -i nEpoch=$2
 	local -i DIFF=0
+	local DateString=$(date --date=@${nArg} +"%b %_d, %Y at %r")
 	if [ ${nArg} -gt ${nEpoch} ];then
 		DIFF=${nArg}-${nEpoch}
 		echo ${DIFF}
 	elif [ ${nArg} -lt ${nEpoch} ];then
 		DIFF=${nEpoch}-${nArg}
-		echo ${DIFF}
+		echo "${DIFF} seconds since ${DateString}"
 	fi
 }
 
@@ -42,3 +43,5 @@ for arg in $@
 do
 	print_diff ${arg} ${EPOCH_NOW}
 done
+
+exit 0
