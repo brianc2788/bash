@@ -9,6 +9,9 @@
 # Powered by the 'date' util.
 # Authored by brianc2788@gmail.com
 
+############################
+# GLOBAL FUNCS & VARIABLES #
+############################
 EPOCH_NOW=$(date +%s)
 
 function usage() {
@@ -30,6 +33,9 @@ function print_diff() {
 	fi
 }
 
+###################
+# "MAIN" FUNCTION #
+###################
 # No args; produce the current seconds since the epoch, print usage, and exit.
 if [ $# -lt 1 ];then
 	echo "Current seconds since the epoch: ${EPOCH_NOW}"
