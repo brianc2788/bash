@@ -4,8 +4,10 @@
 # -----------
 # Updates current BR record.
 # Updates working & master archives.
-# For personal use,
-# authored by brianc2788@gmail.com
+# This script makes assumptions about
+# files, locations, paths, etc.
+# For personal use only.
+# Authored by brianc2788@gmail.com
 # ######################################
 
 echo -n "Searching for BR record..."
