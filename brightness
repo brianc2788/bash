@@ -1,26 +1,37 @@
 #!/bin/bash
-# Enter new brightness value as arg.
-# Similar to my other script, chBrightness,
-# but quicker/more convenient?
+# -------------------------------------------------
+# "brightness" - Enter new brightness value as arg.
+# -------------------------------------------------
+# A script I use on my laptop to
+# change the display brightness.
+# Desktop Environment: Debian Xfce4
+# Authored by brianc2788@gmail.com
+# http://github.com/user5260/bash
+# -------------------------------------------------
 
+#####################
+# GLOB VARS & FUNCS #
+#####################
 NEW_BRIGHTNESS=$1
 CURRENT_BRIGHTNESS=$(xfpm-power-backlight-helper --get-brightness)
-FLOOR=100															# Don't let the user set brightness lower than 100.
-MAX_BRIGHTNESS=24000
+FLOOR=100
+CEILING=24000 # Max brightness as per xfce's power manager.
 
 function usage() {
 	echo -e "Usage: >$ brightness <100-24000>\n"
 	echo "Current Brightness: ${CURRENT_BRIGHTNESS}"
-	echo "Max Brightness: ${MAX_BRIGHTNESS}"
+	echo "Max Brightness: ${CEILING}"
 }
 
+##########
+# "MAIN" #
+##########
 if [ $# -ne 1 ]
 then
 	usage
-	exit
-fi
-
-if [ ${NEW_BRIGHTNESS} -ge ${FLOOR} ] && [ ${NEW_BRIGHTNESS} -le $MAX_BRIGHTNESS ]
-then
-	pkexec xfpm-power-backlight-helper --set-brightness ${NEW_BRIGHTNESS}
+else
+	if [ ${NEW_BRIGHTNESS} -ge ${FLOOR} ] && [ ${NEW_BRIGHTNESS} -le $CEILING ]
+	then
+		pkexec xfpm-power-backlight-helper --set-brightness ${NEW_BRIGHTNESS}
+	fi
 fi
