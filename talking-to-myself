@@ -30,6 +30,7 @@ printbuf() {
 	fi
 }
 
+#the "main event"
 printbuf 1 10 20 "... talking to myself..."
 printbuf 2 10 20 "huh? who're you? where is this?"
 printbuf 1 10 20 "what do you mean?"
