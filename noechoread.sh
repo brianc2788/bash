@@ -3,7 +3,7 @@
 # using the -s option.
 # See shell builtins (read) for more details.
 
-INPUT1=""
+#INPUT1=""
 
 echo -n "sup?: "
 read -s INPUT1
