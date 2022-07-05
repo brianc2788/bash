@@ -8,4 +8,4 @@
 # aside.
 # brianc2788@gmail.com
 # -----------------
-cat ~/mbox >> ~/Documents/system/mbox.copy
+cat ~/mbox >> ~/Documents/system/mbox.copy && rm ~/mbox

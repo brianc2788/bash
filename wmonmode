@@ -1,0 +1,15 @@
+#/bin/bash
+# ===========================================
+# wmonmode
+# --------
+# Personal-use shell script. quickly put the
+# wifi NIC in monitor mode with a random MAC.
+# Stop network services, change mac & mode on NIC.
+# --------
+# Github:
+# brianc2788@gmail.com
+# https://user5260.github.io
+# https://www.github.com/user5260/
+# ===========================================
+echo "ATTN: NEED PERMISSIONS (i.e. sudo)"
+systemctl stop NetworkManager && ifconfig wlan0 stop && macchanger -ba wlan0 && iw wlan0 set type monitor && ifconfig wlan0 up && echo "WLAN0 - MONITOR MODE ENABLED"
