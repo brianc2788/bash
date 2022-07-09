@@ -30,4 +30,5 @@ else
 	sudo service NetworkManager start
 	# Using sudo on 'service' because it doesn't ask for a passw from polkit.
 	# NetworkManager will restart wpa_supplicant.
+	echo -ne "[!] ${NETIF} - Managed mode enabled.\n"
 fi
