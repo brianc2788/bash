@@ -12,11 +12,22 @@
 # https://user5260.github.io
 # https://www.github.com/user5260/
 # ===========================================
-NETIF=$1
-echo "ATTN: NEED ADMIN PRIVILEDGES (i.e. admin, sudoer, etc.)"
-sudo ifconfig $NETIF down
-sudo macchanger -p $NETIF
-sudo iw $NETIF set type managed
-sudo ifconfig $NETIF up
-service NetworkManager start
-echo "[!] ${NETIF} - managed mode enabled."
+
+function usage() {
+	echo -ne "Usage: $ wmanmode <iface>\nNeed a wireless interface to operate on.\n"
+}
+
+# If no arg, print usage.
+if [ $# -lt 1 ];then
+	usage
+	exit 0
+else
+	NETIF=$1
+	sudo ifconfig ${NETIF} down
+	sudo iw ${NETIF} set type managed
+	sudo macchanger -p ${NETIF}
+	sudo ifconfig ${NETIF} up
+	sudo service NetworkManager start
+	# Using sudo on 'service' because it doesn't ask for a passw from polkit.
+	# NetworkManager will restart wpa_supplicant.
+fi
