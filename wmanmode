@@ -1,0 +1,22 @@
+#!/bin/bash
+# ===========================================
+# wmanmode
+# --------
+# Personal-use shell script. quickly put the
+# wifi NIC in managed mode with its original,
+# "burned-in" hardware address (MAC). Restart
+# NetworkManager service.
+# --------
+# Github:
+# brianc2788@gmail.com
+# https://user5260.github.io
+# https://www.github.com/user5260/
+# ===========================================
+NETIF=$1
+echo "ATTN: NEED ADMIN PRIVILEDGES (i.e. admin, sudoer, etc.)"
+sudo ifconfig $NETIF down
+sudo macchanger -p $NETIF
+sudo iw $NETIF set type managed
+sudo ifconfig $NETIF up
+service NetworkManager start
+echo "[!] ${NETIF} - managed mode enabled."
