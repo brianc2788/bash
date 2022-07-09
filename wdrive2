@@ -2,6 +2,8 @@
 # Wifi-Wardrive1
 # still having issues with permissions;
 # chroot? other environment var?
+# solution: use sudo in the script commands
+# rather than on the script itself.
 
 service NetworkManager stop
 service wpa_supplicant stop
