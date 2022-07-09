@@ -11,7 +11,7 @@
 # https://user5260.github.io
 # https://www.github.com/user5260/
 # ===========================================
-echo "ATTN: NEED PERMISSIONS (i.e. sudo)"
+echo "ATTN: NEED SYSTEM PRIVILEDGES (i.e. admin, sudoer)"
 sudo service NetworkManager stop
 sudo service wpa_supplicant stop
 sudo ifconfig wlan0 stop
