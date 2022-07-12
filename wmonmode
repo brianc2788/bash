@@ -5,6 +5,7 @@
 # Personal-use shell script. quickly put the
 # wifi NIC in monitor mode with a random MAC.
 # Stop network services, change mac & mode on NIC.
+# Depends: NetworkManager daemon, GNU Macchanger
 # --------
 # Github:
 # brianc2788@gmail.com
