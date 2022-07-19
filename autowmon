@@ -1,0 +1,14 @@
+#!/bin/bash
+# --------------------------------------
+# autowmon
+# One-liner to start airodump-ng (while
+# already in monitor/promisc) and start
+# writing captures to a file.
+# --------------------------------------
+
+# TODO:
+# - get first arg ($1) as wifi interface.
+# - print usage/help if no args.
+
+CUR_DATE=$(date +%b%d) # Month (3-letter abbrev.), day of month (number chars).
+sudo airodump-ng --output-format cap,csv -w ${CUR_DATE} 
