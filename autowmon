@@ -1,29 +1,33 @@
 #!/bin/bash
 # --------------------------------------
 # autowmon
-# One-liner to start airodump-ng (while
+# One-liner</strike> to start airodump-ng (while
 # already in monitor/promisc) and start
 # writing captures to a file.
 # --------------------------------------
 
 # TODO:
 # - get first arg ($1) as wifi interface.
+# - check interface current mode (iw ${IFACE} info | grep "type managed" ?)
 # - print usage/help if no args.
 
 function usage() {
-	echo -ne "Usage: autowmon <wiface>\nTakes wifi interface as first param/arg."
+	echo -n "Usage: autowmon <wiface>\nTakes wifi interface as first param/arg.\n"
+}
+
+# Args: user can specify
+function parseArgs() {
+	if [ $# -eq 0 ]
+	then
+		usage
+	else
+		echo "received args"
+	fi
 }
 
 function runAirodump() {
 	CUR_DATE=$(date +%b%d) # Month (3-letter abbrev.), day of month (number chars).
 	sudo airodump-ng --output-format cap,csv -w ${CUR_DATE}
-}
-
-function parseArgs() {
-	if [ $# -lt 1 ]
-	then
-		echo "no arg"
-	fi
 }
 
 parseArgs
