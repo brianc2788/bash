@@ -10,5 +10,23 @@
 # - get first arg ($1) as wifi interface.
 # - print usage/help if no args.
 
-CUR_DATE=$(date +%b%d) # Month (3-letter abbrev.), day of month (number chars).
-sudo airodump-ng --output-format cap,csv -w ${CUR_DATE} 
+function usage() {
+	echo -ne "Usage: autowmon <wiface>\nTakes wifi interface as first param/arg."
+}
+
+function runAirodump() {
+	CUR_DATE=$(date +%b%d) # Month (3-letter abbrev.), day of month (number chars).
+	sudo airodump-ng --output-format cap,csv -w ${CUR_DATE}
+}
+
+function parseArgs() {
+	if [ $# -lt 1 ]
+	then
+		echo "no arg"
+	fi
+}
+
+parseArgs
+
+# TODO:
+# - finish...
