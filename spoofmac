@@ -3,10 +3,14 @@
 # TODO:
 # 	- Use oui-list to assign an
 # 	  accurate mac oui.
-# 	- 
+# 	- Everything else.
 
 function usage() {
 	if [ $# -lt 1 ]
 	then
 		echo -e "Usage: >$ spoofmac \"spoof\"|\"unspoof\" <interface>"
+	fi
 }
+
+# call usage.
+usage
