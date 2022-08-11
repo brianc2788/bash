@@ -32,7 +32,7 @@ printbuf() {
 
 #the "main event"
 printbuf 1 10 20 "wake up, neo."
-printbuf 2 10 20 "the matrix has you."
+printbuf 1 10 20 "the matrix has you."
 printbuf 1 10 20 "follow the white rabbit."
 printbuf 1 10 20 "                        "
 printbuf 1 10 20 "knock" 1
