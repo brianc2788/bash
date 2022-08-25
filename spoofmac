@@ -12,5 +12,9 @@ function usage() {
 	fi
 }
 
-# call usage.
-usage
+if [ $# -lt 1 ]
+then
+	usage
+	exit 0
+fi
+
