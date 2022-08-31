@@ -8,6 +8,8 @@
 # NetworkManager service.
 # Commented out ifconfig & iw commands (deprecated)
 # in favor of the ip gnu coreutil.
+# Using GNU Macchanger for its ability to set the
+# "locally-administered" bit for hw address.
 # --------
 # Github:
 # brianc2788@gmail.com
