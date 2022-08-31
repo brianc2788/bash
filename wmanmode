@@ -6,11 +6,13 @@
 # wifi NIC in managed mode with its original,
 # "burned-in" hardware address (MAC). Restart
 # NetworkManager service.
+# Commented out ifconfig & iw commands (deprecated)
+# in favor of the ip gnu coreutil.
 # --------
 # Github:
 # brianc2788@gmail.com
-# https://user5260.github.io
-# https://www.github.com/user5260/
+# https://brianc2788.github.io
+# https://github.com/brianc2788/bash
 # ===========================================
 
 function usage() {
@@ -23,10 +25,13 @@ if [ $# -lt 1 ];then
 	exit 0
 else
 	NETIF=$1
-	sudo ifconfig ${NETIF} down
-	sudo iw ${NETIF} set type managed
+	#sudo ifconfig ${NETIF} down
+	sudo ip link set ${NETIF} down
+	#sudo iw ${NETIF} set type managed
+	sudo ip link set ${NETIF} promisc off
 	sudo macchanger -p ${NETIF}
-	sudo ifconfig ${NETIF} up
+	#sudo ifconfig ${NETIF} up
+	sudo ip link set ${NETIF} up
 	sudo service NetworkManager start
 	# Using sudo on 'service' because it doesn't ask for a passw from polkit.
 	# NetworkManager will restart wpa_supplicant.
