@@ -7,7 +7,7 @@
 # Stop network services, change mac & mode on NIC.
 # Depends: NetworkManager daemon, GNU Macchanger
 # 
-# -Commented out ifconfig (deprecated) for ip. Should do the same for iw.
+# -Commented out ifconfig & iw commands (deprecated) for ip coreutil.
 # -Still using GNU Macchanger for -bia option.
 #  Otherwise, "locally-administered address" bit gets set.
 #  $ ip link set [device] address [address]
@@ -33,7 +33,8 @@ else
 	#sudo ifconfig ${NETIF} down
 	sudo ip link set ${NETIF} down
 	sudo macchanger -br ${NETIF}
-	sudo iw ${NETIF} set type monitor
+	#sudo iw ${NETIF} set type monitor
+	sudo ip link set ${NETIF} promisc on
 	#sudo ifconfig ${NETIF} up
 	sudo ip link set ${NETIF} up
 	echo "[!] ${NETIF} - Monitor mode enabled."
