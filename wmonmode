@@ -11,6 +11,8 @@
 # -Still using GNU Macchanger for -bia option.
 #  Otherwise, "locally-administered address" bit gets set.
 #  $ ip link set [device] address [address]
+# 
+# RESTORE ifconfig & iw commands until further notice.
 # --------
 # Github:
 # brianc2788@gmail.com
@@ -30,12 +32,12 @@ else
 	NETIF=$1
 	sudo service NetworkManager stop
 	sudo service wpa_supplicant stop
-	#sudo ifconfig ${NETIF} down
-	sudo ip link set ${NETIF} down
+	sudo ifconfig ${NETIF} down
+	#sudo ip link set ${NETIF} down
 	sudo macchanger -br ${NETIF}
-	#sudo iw ${NETIF} set type monitor
-	sudo ip link set ${NETIF} promisc on
-	#sudo ifconfig ${NETIF} up
-	sudo ip link set ${NETIF} up
+	sudo iw ${NETIF} set type monitor
+	#sudo ip link set ${NETIF} promisc on
+	sudo ifconfig ${NETIF} up
+	#sudo ip link set ${NETIF} up
 	echo "[!] ${NETIF} - Monitor mode enabled."
 fi

@@ -10,6 +10,7 @@
 # in favor of the ip gnu coreutil.
 # Using GNU Macchanger for its ability to set the
 # "locally-administered" bit for hw address.
+# RESTORED ifconfig & iw commands.
 # --------
 # Github:
 # brianc2788@gmail.com
@@ -27,13 +28,13 @@ if [ $# -lt 1 ];then
 	exit 0
 else
 	NETIF=$1
-	#sudo ifconfig ${NETIF} down
-	sudo ip link set ${NETIF} down
-	#sudo iw ${NETIF} set type managed
-	sudo ip link set ${NETIF} promisc off
+	sudo ifconfig ${NETIF} down
+	#sudo ip link set ${NETIF} down
+	sudo iw ${NETIF} set type managed
+	#sudo ip link set ${NETIF} promisc off
 	sudo macchanger -p ${NETIF}
-	#sudo ifconfig ${NETIF} up
-	sudo ip link set ${NETIF} up
+	sudo ifconfig ${NETIF} up
+	#sudo ip link set ${NETIF} up
 	sudo service NetworkManager start
 	# Using sudo on 'service' because it doesn't ask for a passw from polkit.
 	# NetworkManager will restart wpa_supplicant.
