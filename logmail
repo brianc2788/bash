@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 # -----------------
-# catmail.sh
+# logmail.sh
 # -----------------
 # Personal use.
-# Concatonate (append) 'mbox' files created
-# by system mail to a master file I have set
-# aside.
+# Log files created by system mail
+# to a master file I have set aside.
 # brianc2788@gmail.com
 # -----------------
 TMP_MBOX=${HOME}/mbox
