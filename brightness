@@ -31,5 +31,7 @@ else
 	if [ ${NEW_BRIGHTNESS} -ge ${FLOOR} ] && [ ${NEW_BRIGHTNESS} -le $CEILING ]
 	then
 		pkexec xfpm-power-backlight-helper --set-brightness ${NEW_BRIGHTNESS}
+	else
+		usage
 	fi
 fi
