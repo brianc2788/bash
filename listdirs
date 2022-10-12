@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Print dir listing; directories only.
+# http://brianc2788.github.io
+
+DIR_LIST=$(ls)
+
+for FILE in ${DIR_LIST};do
+    if [[ -d ${FILE} ]];then
+        printf %s\\n $FILE
+    fi
+done
+
