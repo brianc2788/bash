@@ -15,6 +15,7 @@ if [ $# -lt 1 ];then
     exit
 fi
 
+# Loop through, convert, and print args.
 for ARG in $@;do
     T_STR="@${ARG}"
     date --date=${T_STR}
