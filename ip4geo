@@ -1,0 +1,21 @@
+#!/bin/bash
+# Obtain geo info for an IPv4 addr
+# using hackertarget.com API.
+
+function usage() {
+    printf 'Usage: %s [ ip4_addr ]' $0
+}
+
+if [ $# -eq 0 ];then
+    usage
+    exit
+fi
+
+TARGETIP=$1
+
+API_URL="https://api.hackertarget.com/geoip/?q="${TARGETIP}
+
+echo ${API_URL}
+
+curl -s ${API_URL}
+
