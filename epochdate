@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+# ------------------------------------------------
+# Enter time in the form of 'seconds since
+# the epoch' (January 1, 1970) to get the date.
+# ------------------------------------------------
+
+function usage() {
+    echo "Usage: $0 [Seconds-Since-Epoch] [...]"
+    echo "http://brianc2788.github.io"
+}
+
+# If no args, print usage.
+if [ $# -lt 1 ];then
+    usage
+    exit
+fi
+
+for ARG in $@;do
+    T_STR="@${ARG}"
+    date --date=${T_STR}
+done
+
