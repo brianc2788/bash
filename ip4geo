@@ -15,7 +15,4 @@ TARGETIP=$1
 
 API_URL="https://api.hackertarget.com/geoip/?q="${TARGETIP}
 
-echo ${API_URL}
-
 curl -s ${API_URL}
-
