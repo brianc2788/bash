@@ -14,6 +14,7 @@ LOG_DEST=${HOME}/Documents/system/mbox.copy
 if [ -e ${TMP_MBOX} ];then
 	cat ${TMP_MBOX} >> ${LOG_DEST} && rm ${TMP_MBOX}
 	echo "[i] Copied contents of 'mbox' to ${LOG_DEST}"
+	echo "[i] Deleted file: /home/userone/mbox"
 	exit 0
 else
 	echo "[i] Couldn't find file 'mbox' in your home dir. Aborting..."
