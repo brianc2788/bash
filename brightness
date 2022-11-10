@@ -4,9 +4,8 @@
 # -------------------------------------------------
 # A script I use on my laptop to
 # change the display brightness.
-# Desktop Environment: Debian Xfce4
-# Authored by brianc2788@gmail.com
-# http://github.com/user5260/bash
+# Depends: Xfce4 (xfce4-power-backlight-helper)
+# http://brianc2788.github.io
 # -------------------------------------------------
 
 #globs
@@ -17,7 +16,7 @@ FLOOR=100
 CEILING=24000 # Max brightness as per xfce's power manager.
 
 function usage() {
-	echo -e "Usage: >$ brightness <100-24000>\n"
+	echo -en "Usage: >$ brightness [100-24000]\n\n"
 	echo "Current Brightness: ${CURRENT_BRIGHTNESS}"
 	echo "Max Brightness: ${CEILING}"
 }
