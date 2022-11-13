@@ -34,6 +34,7 @@ else
 	sudo service wpa_supplicant stop
 	sudo ifconfig ${NETIF} down
 	#sudo ip link set ${NETIF} down
+	#sudo ifconfig ${NETIF} hw ether #HWADDR?
 	sudo macchanger -br ${NETIF}
 	sudo iw ${NETIF} set type monitor
 	#sudo ip link set ${NETIF} promisc on
