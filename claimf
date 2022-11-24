@@ -1,0 +1,23 @@
+#!/usr/bin/bash
+# claim file ownership (user, group).
+
+function claimfile() {
+	filename=$1
+	sudo chown $(id -un) ${filename}
+	chgrp $(id -gn) ${filename}
+}
+
+if [ $# -lt 1 ];then
+	echo "Please specify a file to claim."
+	exit 0
+fi
+
+for file in $@
+do
+	if [ -e ${file} ];then
+		claimfile ${file}
+	else
+		echo "Couldn't locate your file: ${file}"
+	fi
+done
+
