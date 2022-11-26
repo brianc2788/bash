@@ -1,25 +1,23 @@
 #!/bin/bash
-# epochdiff - shell script
-# ------------------------
-# Enter any number of args (time in the form of
-# seconds since the epoch; Jan 1st, 1970, midnight)
-# as the user. epochdiff will output the current
-# seconds-since-epoch and the absolute difference
-# between the argument and the current measurements.
-# Powered by the 'date' util.
-# Authored by brianc2788@gmail.com
+# epochdiff.sh
+# ------------
+# Uses gnu 'date' to convert 'seconds since
+# the epoch' (00:00AM, Jan 1, 1970), then
+# calculates the difference with shell arithmetic.
+# http://brianc2788.github.io/
 
-############################
-# GLOBAL FUNCS & VARIABLES #
-############################
+
+## globals
+
 EPOCH_NOW=$(date +%s)
 
 function usage() {
-	echo "Usage: >$ epochdiff <epoch_string> <...>"
+	echo -e "Usage:\nsuser@local$ epochdiff epoch1 [epoch2] [...]"
 	exit 0
 }
 
-function print_diff() {
+
+function printDifference() {
 	local -i nArg=$1
 	local -i nEpoch=$2
 	local -i DIFF=0
@@ -33,10 +31,8 @@ function print_diff() {
 	fi
 }
 
-###################
-# "MAIN" FUNCTION #
-###################
-# No args; produce the current seconds since the epoch, print usage, and exit.
+## main
+# loop argv.
 if [ $# -lt 1 ];then
 	echo "Current seconds since the epoch: ${EPOCH_NOW}"
 	usage
@@ -47,7 +43,7 @@ fi
 # Loop through arguments with print_diff().
 for arg in $@
 do
-	print_diff ${arg} ${EPOCH_NOW}
+	printDifference ${arg} ${EPOCH_NOW}
 done
 
 exit 0
