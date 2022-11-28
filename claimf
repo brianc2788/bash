@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 # claim file ownership (user, group).
+# privileges required to modify another user's file(s).
 
 function claimfile() {
 	filename=$1
