@@ -80,3 +80,4 @@ airmon-ng stop wlan0mon
 service networking restart
 
 echo -e "\n${PRE_NFO} ${RED}Exit${RST}ing...."
+
