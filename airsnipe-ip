@@ -2,17 +2,12 @@
 # ----------------------------------------------------------
 # airsnipe-ip.sh
 # ----------------------------------------------------------
-## Originally wrote this to help me remember the switches
-## and positional args for aireplay-ng, which is why it's
-## interactively prompting the user for input. This cmd is
-## used primarily to engineer a situation that generates
-## IVs between stations & access points for later analy-
-## sis and/or attacking WEP/WPA. Added '-ip' suffix because,
-## I was planning to implement the mac version separately.
-## It's basically my own, crappy script-kiddy script;
-## like airgeddon or ettercap (gross).
-## The aircrack-ng suite is amazing, but it's disabled
-## for debugging. Preparing to replace airmon-ng with iputils.
+# Just thought it might help me remember the switches for
+# aireplay-ng. That and make my own script-kiddie wrapper
+# around actual hacking tools; complete with way too much
+# termcolor. There's not a ton of control mechanisms (zero) and
+# there may not ever be due to the personalized nature therein.
+# But dammit, colors. And I can say I wrote 100-line sh script.
 # http://brianc2788.github.io/
 # ----------------------------------------------------------
 
@@ -64,20 +59,32 @@ echo -en "\n${PRE_NFO} ${GRE}Running aircrack-ng tools: "
 echo -e "${RST}airmon-ng, aireplay-ng (mode 4)"
 echo -en "${PRE_USR} ------------------------------------------------------------------- ${PRE_USR}\n\n"
 
+# User needs to enter creds via PAM. Use systemctl or sudo??
+service NetworkManager stop
+service wpa_supplicant stop
+
 # Change wireless interface to monitor mode with airmon-ng. Disabled for debugging.
 # TODO: Exchange airmon with os utils (ifconfig, iw, ip, and maybe gnu macchanger). Set a default value for $IFACE.
 #airmon-ng check kill
 #airmon-ng start wlan0 $APCH
+sudo ifconfig ${IFACE} down
+sudo iw ${IFACE} set type monitor
+sudo macchanger -rb ${IFACE}
+sudo ifconfig ${IFACE} up
 
 # target options:    -k <targetIP> or -c <targetMAC>
 #aireplay-ng --deauth ${COUNT} -a ${AP_MAC} -k ${STA_IP} ${IFACE}
 
 # Restore interface to managed mode.
-# Originally, wanted a script to do this remotely.
+# Originally, wanted to run remotely on a raspberry pi 4B - Lol.
 echo -en "\n"
-echo -e "${PRE_NFO} Restoring interface to managed mode..."
-airmon-ng stop wlan0mon
+echo -e "${PRE_NFO} ${YEL}Restoring interface to managed mode, restarting networking daemons...${RST}"
+#airmon-ng stop wlan0mon
+sudo ifconfig ${IFACE} down
+sudo iw ${IFACE} set type managed
+sudo macchanger -p ${IFACE}
+sudo ifconfig ${IFACE} up
 service networking restart
 
-echo -e "\n${PRE_NFO} ${RED}Exit${RST}ing...."
+echo -e "\n${PRE_NFO} ${RED}Exiting${RST}...."
 
