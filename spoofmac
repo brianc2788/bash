@@ -4,6 +4,7 @@
 # 	- Use oui-list to assign an
 # 	  accurate mac oui.
 # 	- Everything else.
+# use "ifconfig dev set hw ether [hwaddress]"
 
 function usage() {
 	if [ $# -lt 1 ]
