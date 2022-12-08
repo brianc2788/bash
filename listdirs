@@ -1,12 +1,31 @@
 #!/usr/bin/env bash
-# Print dir listing; directories only.
+# ==============================================================================
+# listdirs.sh
+# ------------------------------------------------------------------------------
+# User enters target dir as first positional arg,
+# or working dir defaults to the current dir.
+# ------------------------------------------------------------------------------
 # http://brianc2788.github.io
+# ==============================================================================
 
-DIR_LIST=$(ls)
+# Set default target as current dir or, if arg is present,
+# check that it's a directory and continue.
+WORKING_DIR=""
+if [ $# -eq 0 ];then
+    WORKING_DIR=$(pwd)
+else
+    if [ -d $1 ];then
+        WORKING_DIR=$1
+    else
+        echo -en "Couldn't locate your directory.\nAborting script...\n"
+        exit 0
+    fi
+fi
 
+# List subdirs only.
+DIR_LIST=$(ls ${WORKING_DIR})
 for FILE in ${DIR_LIST};do
-    if [[ -d ${FILE} ]];then
+    if [ -d ${WORKING_DIR}/${FILE} ];then
         printf %s\\n $FILE
     fi
 done
-
