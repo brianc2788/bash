@@ -5,18 +5,23 @@
 # Personal use.
 # Log files created by system mail
 # to a master file I have set aside.
-# brianc2788@gmail.com
+# http://brianc2788.github.io/
 # -----------------
-TMP_MBOX=${HOME}/mbox
-LOG_DEST=${HOME}/Documents/system/mbox.copy
+FILE_MBOX=${HOME}/mbox
+LOG_DEST=${HOME}/Documents/mbox.copy
 
 # True if file exists (-a or -e)
-if [ -e ${TMP_MBOX} ];then
-	cat ${TMP_MBOX} >> ${LOG_DEST} && rm ${TMP_MBOX}
+if [ -e ${FILE_MBOX} ];then
+	cat ${FILE_MBOX} >> ${LOG_DEST} && rm ${FILE_MBOX}
 	echo "[i] Copied contents of 'mbox' to ${LOG_DEST}"
-	echo "[i] Deleted file: /home/userone/mbox"
-	exit 0
+
+	if [ ! -e ${FILE_MBOX} ];then
+		echo "[i] Deleted file: /home/userone/mbox"
+	else
+		echo -e "[!] Couldn't delete ${FILE_MBOX};\nFile is still present in ${HOME}."
+		exit 1
+	fi
 else
-	echo "[i] Couldn't find file 'mbox' in your home dir. Aborting..."
+	echo -e "[!] Couldn't find ${FILE_MBOX} in ${HOME}.\nAborting..."
 	exit 1
 fi
