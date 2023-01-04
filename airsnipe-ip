@@ -22,8 +22,11 @@ PRE_ATT="${YEL}[${RED}!${YEL}]${RST}"    # ATTENTION
 PRE_NFO="${YEL}[i${YEL}]${RST}"    # INFORMATION
 PRE_USR="${YEL}[${GRE}+${YEL}]"    # USER-INPUT
 
+COPY_SYM="\\xc2\\xa9"    # Copyright symbol; 32-bit unicode hex value.
+
 echo -e "${PRE_USR} ------------------------------------------------------------------- ${PRE_USR}"
 echo -e "${PRE_ATT} ${GRE}AIRSNIPE-IP${RST} - Bash script. Interactive aireplay-ng wrapper."
+echo -e "${PRE_NFO} ${RST}${COPY_SYM} Copyright 2022-2023${RST}"
 echo -e "${PRE_NFO} ${RST}http://brianc2788.github.io/${RST}"
 echo -en "${PRE_USR} ------------------------------------------------------------------- ${PRE_USR}\n\n"
 
