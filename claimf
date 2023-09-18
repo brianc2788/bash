@@ -9,9 +9,14 @@ function claimfile() {
 	chgrp $(id -gn) ${filename}
 }
 
+function printUsage() {
+	echo -e "Usage: $(basename $0) file [file2 file3 [...]]"
+}
+
 if [ $# -lt 1 ];then
 	echo "Please specify a file to claim."
-	echo -e "Usage\nuser@local$ $(basename $0) file [file2 file3 [...]]"
+	#echo -e "Usage\nuser@local$ $(basename $0) file [file2 file3 [...]]"
+	printUsage
 	exit 0
 fi
 

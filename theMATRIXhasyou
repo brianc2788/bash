@@ -1,34 +1,33 @@
 #!/bin/bash
-# ============================================== #
-# TALKING-TO-MYSELF.SH - SHELL SCRIPT            #
-# ============================================== #
-# just for fun. might lead to some good ideas for#
-# something later on.                            #
-# clearly a lot of potential here.               #
-# -----------------------------------------------#
-# brianc2788@gmail.com                           #
-# ---------------------------------------------- #
+# theMATRIXhasyou
+# fun little demo.
+# https://brianc2788.github.io/
 
+# not really a buffer.
 printbuf() {
 	color=$1
 	x=$2
 	y=$3
 	text=$4
 
+	# Clears the 'screen' before printing.
 	if [ $# -eq 4 ]
 	then
 	time=2.0
 	clear
 	tput setaf ${color};tput cup ${x} ${y};echo -n ${text}
 	sleep ${time}
-	else
-		if [ $# -eq 5 ]
-		then
-			time=$5
-			tput setaf ${color};tput cup ${x} ${y};echo -n ${text};sleep ${time}
-		fi
+	fi
+
+	# Doesn't clear previous 'frame' before printing.
+	if [ $# -eq 5 ]
+	then
+		time=$5
+		tput setaf ${color};tput cup ${x} ${y};echo -n ${text};sleep ${time}
 	fi
 }
+
+INPUT_BUFFER=""
 
 #the "main event"
 printbuf 1 10 20 "wake up, neo."
@@ -38,5 +37,5 @@ printbuf 1 10 20 "                        "
 printbuf 1 10 20 "knock" 1
 printbuf 1 10 30 "knock," 1
 printbuf 1 10 40 "neo." 3
-printbuf 1 12 30 "press ENTER"
+printbuf 1 12 30 "press ENTER" 0
 read ${INPUT_BUFFER}

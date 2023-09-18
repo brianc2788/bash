@@ -8,7 +8,7 @@
 # http://brianc2788.github.io/
 # -----------------
 FILE_MBOX=${HOME}/mbox
-LOG_DEST=${HOME}/Documents/mbox.copy
+LOG_DEST=${HOME}/Documents/sys/mbox.copy
 
 # True if file exists (-a or -e)
 if [ -e ${FILE_MBOX} ];then
