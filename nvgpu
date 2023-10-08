@@ -1,0 +1,18 @@
+#!/bin/bash
+# Export environment variables that designate the use
+# of your nvidia gpu and call wine on a game binary.
+
+export __NV_PRIME_RENDER_OFFLOAD=1
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+
+function printUsage() {
+	echo -e "Usage: $(basename $0) [exe]"
+}
+
+if [ $# -lt 1 ];then
+	echo "Specify a Windows executable (PE binary)"
+	printUsage
+	exit 0
+else
+	wine $1
+fi
