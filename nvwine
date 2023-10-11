@@ -1,12 +1,14 @@
 #!/bin/bash
 # Export environment variables that designate the use
 # of your nvidia gpu and call wine on a game binary.
+# Takes a second argument for selecting an alternative
+# wine prefix.
 
 export __NV_PRIME_RENDER_OFFLOAD=1
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 
 function printUsage() {
-	echo -e "Usage: $(basename $0) [exe]"
+	echo -e "Usage: $(basename $0) [exe] [prefix (optional)]"
 }
 
 if [ $# -lt 1 ];then
@@ -14,5 +16,15 @@ if [ $# -lt 1 ];then
 	printUsage
 	exit 0
 else
+	if [ $# -gt 1 ];then
+		if [ -e $HOME/.local/share/wineprefixes/$2 ];then
+			export WINEPREFIX=$HOME/.local/share/wineprefixes/$2
+			wine $1
+			exit 0
+		else
+			echo -e "nvwine: Couldn't find your wine prefix: $2"
+			echo -e "nvwine: Using default prefix."
+		fi
+	fi
 	wine $1
 fi
